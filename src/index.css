@@ -1,0 +1,55 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.todo {
+  max-width: 375px;
+  margin: 0 auto;
+}
+
+
+
+/* Form */
+
+.form {
+  display: flex;
+  width: 100%;
+  margin: 0 0 30px;
+}
+
+.form__input {
+  flex-grow: 1;
+}
+
+
+
+/* Task */
+
+.task {
+  display: flex;
+  align-items: center;
+}
+
+.task-is-done {
+  opacity: 0.5;
+}
+
+.task__text {
+  flex-grow: 1;
+  font-size: 12px;
+}
+
+.task-is-done .task__text {
+  text-decoration: line-through;
+}
+
+.task__button-is-delete {
+  background: none;
+  border: 0;
+  color: pink;
+}
