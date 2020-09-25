@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
 class TaskAdd extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: '',
-    }
+      input: "",
+    };
   }
 
   addTask = (event) => {
@@ -13,20 +13,27 @@ class TaskAdd extends React.Component {
     const { input } = this.state;
     if (input) {
       this.props.addTask(input);
-      this.setState({ input: '' });
+      this.setState({ input: "" });
     }
-  }
+  };
 
-  onChange = event => {
+  onChange = (event) => {
     this.setState({ input: event.target.value });
-  }
+  };
 
   render() {
-    const { input } = this.state;
     return (
-      <form className="form" onSubmit={this.addTask}>
-        <input className="form__input" onChange={this.onChange} value={input}></input>
-        <button className="form__submit">Add</button>
+      <form onSubmit={this.addTask}>
+        <div className="input-group">
+          <input
+            className="form-control"
+            onChange={this.onChange}
+            value={this.state.input}
+          ></input>
+          <div className="input-group-append">
+            <button className="input-group-text">Add</button>
+          </div>
+        </div>
       </form>
     );
   }
