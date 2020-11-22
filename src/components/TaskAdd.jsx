@@ -1,4 +1,8 @@
+// @ts-check
 import React from "react";
+import Button from "@material-ui/core/Button";
+import SaveIcon from "@material-ui/icons/Save";
+import TextField from "@material-ui/core/TextField";
 
 class TaskAdd extends React.Component {
   constructor(props) {
@@ -23,17 +27,23 @@ class TaskAdd extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.addTask}>
-        <div className="input-group">
-          <input
-            className="form-control"
-            onChange={this.onChange}
-            value={this.state.input}
-          ></input>
-          <div className="input-group-append">
-            <button className="input-group-text">Add</button>
-          </div>
-        </div>
+      <form style={{ display: "flex" }} onSubmit={this.addTask}>
+        <TextField
+          style={{ flexGrow: 1 }}
+          variant="outlined"
+          label="What needs to be done?"
+          onChange={this.onChange}
+          value={this.state.input}
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          startIcon={<SaveIcon />}
+          type="submit"
+          disabled={this.state.input.length === 0}
+        >
+          Add
+        </Button>
       </form>
     );
   }

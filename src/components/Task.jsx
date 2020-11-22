@@ -1,39 +1,33 @@
+// @ts-check
 import React from "react";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import CheckBoxOutlineBlankOutlinedIcon from "@material-ui/icons/CheckBoxOutlineBlankOutlined";
+import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
+import DeleteIcon from "@material-ui/icons/Delete";
+import IconButton from "@material-ui/core/IconButton";
 
-const Task = ({ task, doneTask, undoneTask, deleteTask }) => {
-  const DoneButton = () =>
-    task.done ? (
-      <button className="btn btn-warning" type="button" onClick={undoneTask}>
-        Undone
-      </button>
-    ) : (
-      <button className="btn btn-success" type="button" onClick={doneTask}>
-        Done
-      </button>
-    );
-
-  const DeleteButton = () => (
-    <button className="btn btn-link mx-2" type="button" onClick={deleteTask}>
-      Delete
-    </button>
-  );
-
-  const Text = () =>
-    task.done ? (
-      <div className="align-self-center mr-auto">
-        <s>{task.title}</s>
-      </div>
-    ) : (
-      <div className="align-self-center mr-auto">{task.title}</div>
-    );
-
-  return (
-    <li className="list-group-item d-flex align-items-start">
-      <Text />
-      <DeleteButton />
-      <DoneButton />
-    </li>
-  );
-};
+const Task = ({ task, doneTask, undoneTask, deleteTask }) => (
+  <ListItem button onClick={() => (task.done ? undoneTask() : doneTask())}>
+    <ListItemIcon>
+      {task.done ? (
+        <CheckBoxOutlinedIcon />
+      ) : (
+        <CheckBoxOutlineBlankOutlinedIcon />
+      )}
+    </ListItemIcon>
+    <ListItemText
+      primary={task.title}
+      style={{ textDecoration: task.done ? "line-through" : "none" }}
+    />
+    <ListItemSecondaryAction>
+      <IconButton edge="end" aria-label="delete" onClick={deleteTask}>
+        <DeleteIcon />
+      </IconButton>
+    </ListItemSecondaryAction>
+  </ListItem>
+);
 
 export default Task;

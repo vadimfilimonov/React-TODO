@@ -1,11 +1,15 @@
+// @ts-check
 import React from "react";
 import nextId from "react-id-generator";
+import Container from "@material-ui/core/Container";
+import Typography from "@material-ui/core/Typography";
+import List from "@material-ui/core/List";
 import Task from "./components/Task.jsx";
 import TaskAdd from "./components/TaskAdd.jsx";
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       tasks: [],
     };
@@ -53,25 +57,23 @@ class App extends React.Component {
   render() {
     const { tasks } = this.state;
     return (
-      <section className="container my-3">
-        <div className="row justify-content-md-center">
-          <div className="col col-md-6">
-            <h1>Tasks</h1>
-            <TaskAdd addTask={this.addTask}></TaskAdd>
-            <ul className="list-group my-3">
-              {tasks.map((task) => (
-                <Task
-                  doneTask={() => this.doneTask(task.id)}
-                  undoneTask={() => this.undoneTask(task.id)}
-                  deleteTask={() => this.deleteTask(task.id)}
-                  task={task}
-                  key={task.id}
-                ></Task>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
+      <Container maxWidth="sm">
+        <Typography variant="h1" component="h1">
+          todos
+        </Typography>
+        <TaskAdd addTask={this.addTask}></TaskAdd>
+        <List>
+          {tasks.map((task) => (
+            <Task
+              doneTask={() => this.doneTask(task.id)}
+              undoneTask={() => this.undoneTask(task.id)}
+              deleteTask={() => this.deleteTask(task.id)}
+              task={task}
+              key={task.id}
+            ></Task>
+          ))}
+        </List>
+      </Container>
     );
   }
 }
