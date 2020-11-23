@@ -1,52 +1,40 @@
 // @ts-check
-import React from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/Save";
 import TextField from "@material-ui/core/TextField";
 
-class TaskAdd extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      input: "",
-    };
-  }
+const TaskAdd = (props) => {
+  const [input, setInput] = useState("");
 
-  addTask = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const { input } = this.state;
     if (input) {
-      this.props.addTask(input);
-      this.setState({ input: "" });
+      props.addTask(input);
+      setInput("");
     }
   };
 
-  onChange = (event) => {
-    this.setState({ input: event.target.value });
-  };
-
-  render() {
-    return (
-      <form style={{ display: "flex" }} onSubmit={this.addTask}>
-        <TextField
-          style={{ flexGrow: 1 }}
-          variant="outlined"
-          label="What needs to be done?"
-          onChange={this.onChange}
-          value={this.state.input}
-        />
-        <Button
-          variant="contained"
-          color="primary"
-          startIcon={<SaveIcon />}
-          type="submit"
-          disabled={this.state.input.length === 0}
-        >
-          Add
-        </Button>
-      </form>
-    );
-  }
-}
+  return (
+    <form style={{ display: "flex" }} onSubmit={handleSubmit}>
+      <TextField
+        style={{ flexGrow: 1 }}
+        variant="outlined"
+        label="What needs to be done?"
+        onChange={(event) => setInput(event.target.value)}
+        value={input}
+      />
+      <Button
+        variant="contained"
+        color="primary"
+        type="submit"
+        startIcon={<SaveIcon />}
+        disabled={input.length === 0}
+      >
+        Add
+      </Button>
+    </form>
+  );
+};
 
 export default TaskAdd;

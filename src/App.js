@@ -61,7 +61,7 @@ const App = () => {
             deleteTask={() => deleteTask(task.id)}
             task={task}
             key={task.id}
-          ></Task>
+          />
         ))}
       </List>
     </Container>
