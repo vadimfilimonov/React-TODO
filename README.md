@@ -9,20 +9,29 @@ http://vf-react-todo.surge.sh
 ## Setup
 
 ```sh
-npm install
+make install
 ```
 
 ## Build
+
 ```sh
-npm run build
+make build
 ```
 
 ## Run
+
 ```sh
-npm start
+make develop
+```
+
+## Run lint
+
+```sh
+make lint
 ```
 
 ## Run tests
+
 ```sh
-npm run test
+make test
 ```
