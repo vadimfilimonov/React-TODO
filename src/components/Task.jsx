@@ -16,11 +16,7 @@ import {
 const Task = ({task, doneTask, undoneTask, deleteTask}) => (
   <ListItem button onClick={() => (task.done ? undoneTask() : doneTask())}>
     <ListItemIcon>
-      {task.done ? (
-        <CheckBoxOutlined />
-      ) : (
-        <CheckBoxOutlineBlankOutlined />
-      )}
+      {task.done ? <CheckBoxOutlined /> : <CheckBoxOutlineBlankOutlined />}
     </ListItemIcon>
     <ListItemText
       primary={task.title}
