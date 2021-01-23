@@ -1,5 +1,8 @@
 # React TODO
 
+[![Actions Status](https://github.com/VadimFilimonov/React-TODO/workflows/linter/badge.svg)](https://github.com/VadimFilimonov/React-TODO/actions)
+[![Actions Status](https://github.com/VadimFilimonov/React-TODO/workflows/test/badge.svg)](https://github.com/VadimFilimonov/React-TODO/actions)
+
 A simple todo list app built in React.
 
 ## Demo
