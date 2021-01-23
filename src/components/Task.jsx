@@ -13,8 +13,8 @@ import {
   Delete,
 } from '@material-ui/icons';
 
-const Task = ({task, doneTask, undoneTask, deleteTask}) => (
-  <ListItem button onClick={() => (task.done ? undoneTask() : doneTask())}>
+const Task = ({task, toggleTask, deleteTask}) => (
+  <ListItem button onClick={toggleTask}>
     <ListItemIcon>
       {task.done ? <CheckBoxOutlined /> : <CheckBoxOutlineBlankOutlined />}
     </ListItemIcon>

@@ -20,23 +20,12 @@ const App = () => {
     setTasks(newsTasks);
   };
 
-  const doneTask = (id) => {
+  const toggleTask = (id) => {
     const newTasks = tasks.map((task) => {
       if (task.id !== id) {
         return task;
       }
-      task.done = true;
-      return task;
-    });
-    setTasks(newTasks);
-  };
-
-  const undoneTask = (id) => {
-    const newTasks = tasks.map((task) => {
-      if (task.id !== id) {
-        return task;
-      }
-      task.done = false;
+      task.done = !task.done;
       return task;
     });
     setTasks(newTasks);
@@ -56,8 +45,7 @@ const App = () => {
       <List>
         {tasks.map((task) => (
           <Task
-            doneTask={() => doneTask(task.id)}
-            undoneTask={() => undoneTask(task.id)}
+            toggleTask={() => toggleTask(task.id)}
             deleteTask={() => deleteTask(task.id)}
             task={task}
             key={task.id}
