@@ -13,4 +13,7 @@ lint:
 test:
 	npx react-scripts test --watchAll=false
 
+deploy:
+	npx surge ./build/
+
 .PHONY: build
