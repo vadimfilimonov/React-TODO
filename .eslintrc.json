@@ -1,11 +1,12 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest": true
     },
     "extends": [
         "plugin:react/recommended",
-        "google",
+        "airbnb",
         "prettier",
         "prettier/react"
     ],
@@ -16,15 +17,11 @@
         "ecmaVersion": 12,
         "sourceType": "module"
     },
-    "settings": {
-      "react": {
-        "version": "detect"
-      }
-    },
     "plugins": [
-        "react"
+        "react",
+        "prettier"
     ],
     "rules": {
-        "react/prop-types": "off"
+      "react/prop-types": "off"
     }
 }

@@ -4,8 +4,8 @@ import nextId from 'react-id-generator';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
-import Task from './components/Task.jsx';
-import TaskAdd from './components/TaskAdd.jsx';
+import Task from './components/Task';
+import TaskAdd from './components/TaskAdd';
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
@@ -22,11 +22,11 @@ const App = () => {
 
   const toggleTask = (id) => {
     const newTasks = tasks.map((task) => {
-      if (task.id !== id) {
-        return task;
+      const newTask = task;
+      if (task.id === id) {
+        newTask.done = !task.done;
       }
-      task.done = !task.done;
-      return task;
+      return newTask;
     });
     setTasks(newTasks);
   };
@@ -41,7 +41,7 @@ const App = () => {
       <Typography variant="h1" component="h1">
         todos
       </Typography>
-      <TaskAdd addTask={addTask}></TaskAdd>
+      <TaskAdd addTask={addTask} />
       <List>
         {tasks.map((task) => (
           <Task
