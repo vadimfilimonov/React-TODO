@@ -6,8 +6,9 @@
     },
     "extends": [
         "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
         "airbnb",
-        "prettier",
+        "plugin:prettier/recommended",
         "prettier/react"
     ],
     "parserOptions": {
@@ -19,6 +20,9 @@
     },
     "plugins": [
         "react",
+        "react-hooks",
+        "jsx-a11y",
+        "import",
         "prettier"
     ],
     "rules": {
