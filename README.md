@@ -8,7 +8,7 @@ A simple todo list app built in React.
 
 ## Demo
 
-http://vf-react-todo.surge.sh
+https://vadimfilimonov.github.io/React-TODO/
 
 ## Setup
 
