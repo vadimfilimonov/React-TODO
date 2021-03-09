@@ -8,6 +8,7 @@ develop:
 	npm start
 
 lint:
+	npx editorconfig-checker
 	npx eslint './src/**/*{.js,.jsx}'
 
 test:
