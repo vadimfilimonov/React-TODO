@@ -6,6 +6,9 @@ import List from '@material-ui/core/List';
 import Task from './components/Task';
 import TaskAdd from './components/TaskAdd';
 
+// TODO: Refactor temp func
+const generateId = () => `${new Date()}-${Math.random()}`;
+
 const extractTasksFromLocalStorage = () => {
   const savedTasks = localStorage.getItem('predefinedTasks');
   return JSON.parse(savedTasks) || [];
@@ -26,7 +29,7 @@ const App = () => {
 
   const addTask = (title) => {
     const newTask = {
-      id: new Date(),
+      id: generateId(),
       title,
       done: false,
     };
