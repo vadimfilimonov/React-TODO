@@ -35,13 +35,10 @@ const App = () => {
   };
 
   const toggleTask = (id) => {
-    const newTasks = tasks.map((task) => {
-      const newTask = task;
-      if (task.id === id) {
-        newTask.done = !task.done;
-      }
-      return newTask;
-    });
+    const newTasks = tasks.map((task) => ({
+      ...task,
+      done: task.id === id ? !task.done : task.done,
+    }));
     setTasks(newTasks);
   };
 
