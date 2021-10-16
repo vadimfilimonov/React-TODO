@@ -13,8 +13,8 @@ import {
   Delete,
 } from '@material-ui/icons';
 
-const Task = ({task, toggleTask, deleteTask}) => (
-  <ListItem button onClick={toggleTask}>
+const Task = ({task, onToggleTask, onDeleteTask}) => (
+  <ListItem button onClick={onToggleTask}>
     <ListItemIcon>
       {task.done ? <CheckBoxOutlined /> : <CheckBoxOutlineBlankOutlined />}
     </ListItemIcon>
@@ -23,7 +23,7 @@ const Task = ({task, toggleTask, deleteTask}) => (
       style={{textDecoration: task.done ? 'line-through' : 'none'}}
     />
     <ListItemSecondaryAction>
-      <IconButton edge="end" aria-label="delete" onClick={deleteTask}>
+      <IconButton edge="end" aria-label="delete" onClick={onDeleteTask}>
         <Delete />
       </IconButton>
     </ListItemSecondaryAction>

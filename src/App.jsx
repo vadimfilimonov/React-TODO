@@ -3,11 +3,9 @@ import React, {useEffect, useState} from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
+import uniqueId from 'lodash.uniqueid';
 import Task from './components/Task';
 import TaskAdd from './components/TaskAdd';
-
-// TODO: Refactor temp func
-const generateId = () => `${new Date()}-${Math.random()}`;
 
 const extractTasksFromLocalStorage = () => {
   const savedTasks = localStorage.getItem('predefinedTasks');
@@ -27,9 +25,9 @@ const App = () => {
     saveTasksToLocalStorage(tasks);
   }, [tasks]);
 
-  const addTask = (title) => {
+  const handleAddTask = (title) => {
     const newTask = {
-      id: generateId(),
+      id: uniqueId(),
       title,
       done: false,
     };
@@ -37,7 +35,7 @@ const App = () => {
     setTasks(newsTasks);
   };
 
-  const toggleTask = (id) => {
+  const handleToggleTask = (id) => {
     const newTasks = tasks.map((task) => ({
       ...task,
       done: task.id === id ? !task.done : task.done,
@@ -45,7 +43,7 @@ const App = () => {
     setTasks(newTasks);
   };
 
-  const deleteTask = (id) => {
+  const handleDeleteTask = (id) => {
     const newTasks = tasks.filter((task) => task.id !== id);
     setTasks(newTasks);
   };
@@ -55,14 +53,14 @@ const App = () => {
       <Typography variant="h1" component="h1">
         todos
       </Typography>
-      <TaskAdd addTask={addTask} />
+      <TaskAdd onAddTask={handleAddTask} />
       <List>
         {tasks.map((task) => (
           <Task
-            toggleTask={() => toggleTask(task.id)}
-            deleteTask={() => deleteTask(task.id)}
-            task={task}
             key={task.id}
+            task={task}
+            onToggleTask={() => handleToggleTask(task.id)}
+            onDeleteTask={() => handleDeleteTask(task.id)}
           />
         ))}
       </List>
