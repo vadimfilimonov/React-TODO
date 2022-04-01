@@ -1,10 +1,9 @@
 // @ts-check
-import React, {useState} from 'react';
-import Button from '@material-ui/core/Button';
+import React, { useState } from 'react';
+import { Button, TextField } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
-import TextField from '@material-ui/core/TextField';
 
-const TaskAdd = ({onAddTask}) => {
+const TaskAdd = ({ onAddTask }) => {
   const [value, setValue] = useState('');
 
   const handleSubmit = (event) => {
@@ -13,22 +12,20 @@ const TaskAdd = ({onAddTask}) => {
     setValue('');
   };
 
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+
   return (
-    <form style={{display: 'flex'}} onSubmit={handleSubmit}>
+    <form style={{ display: 'flex' }} onSubmit={handleSubmit}>
       <TextField
-        style={{flexGrow: 1}}
+        style={{ flexGrow: 1 }}
         variant="outlined"
         label="What needs to be done?"
         value={value}
-        onChange={(event) => setValue(event.target.value)}
+        onChange={handleChange}
       />
-      <Button
-        variant="contained"
-        color="primary"
-        type="submit"
-        startIcon={<SaveIcon />}
-        disabled={value.length === 0}
-      >
+      <Button variant="contained" color="primary" type="submit" startIcon={<SaveIcon />} disabled={value.length === 0}>
         Add
       </Button>
     </form>

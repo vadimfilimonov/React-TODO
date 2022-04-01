@@ -1,8 +1,6 @@
 // @ts-check
-import React, {useEffect, useState} from 'react';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import List from '@material-ui/core/List';
+import React, { useEffect, useState } from 'react';
+import { Container, Typography, List } from '@material-ui/core';
 import uniqueId from 'lodash.uniqueid';
 import Task from './components/Task';
 import TaskAdd from './components/TaskAdd';
@@ -22,30 +20,35 @@ const App = () => {
   const [tasks, setTasks] = useState(predefinedTasks);
 
   useEffect(() => {
-    saveTasksToLocalStorage(tasks);
-  }, [tasks]);
+    console.error('Test rollbar via console error');
+  }, []);
 
   const handleAddTask = (title) => {
     const newTask = {
-      id: uniqueId(),
+      id: uniqueId(), // FIXME: uniqueId doesn't know about existing ids
       title,
       done: false,
     };
-    const newsTasks = [newTask, ...tasks];
-    setTasks(newsTasks);
+    const newTasks = [newTask, ...tasks];
+    setTasks(newTasks);
+    saveTasksToLocalStorage(newTasks);
   };
 
-  const handleToggleTask = (id) => {
+  const handleToggleTask = (id) => () => {
     const newTasks = tasks.map((task) => ({
       ...task,
       done: task.id === id ? !task.done : task.done,
     }));
     setTasks(newTasks);
+    saveTasksToLocalStorage(newTasks);
+    // TODO: delete after tests
+    throw new Error('Test rollbar via throw');
   };
 
   const handleDeleteTask = (id) => {
     const newTasks = tasks.filter((task) => task.id !== id);
     setTasks(newTasks);
+    saveTasksToLocalStorage(newTasks);
   };
 
   return (
@@ -59,7 +62,7 @@ const App = () => {
           <Task
             key={task.id}
             task={task}
-            onToggleTask={() => handleToggleTask(task.id)}
+            onToggleTask={handleToggleTask(task.id)}
             onDeleteTask={() => handleDeleteTask(task.id)}
           />
         ))}

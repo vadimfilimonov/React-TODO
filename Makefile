@@ -17,6 +17,6 @@ test:
 	npx react-scripts test --watchAll=false
 
 deploy:
-	npx surge ./build/
+	npm run deploy
 
 .PHONY: build
