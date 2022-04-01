@@ -1,5 +1,5 @@
 // @ts-check
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Container, Typography, List } from '@material-ui/core';
 import uniqueId from 'lodash.uniqueid';
 import Task from './components/Task';
@@ -19,10 +19,6 @@ const App = () => {
   const predefinedTasks = extractTasksFromLocalStorage();
   const [tasks, setTasks] = useState(predefinedTasks);
 
-  useEffect(() => {
-    console.error('Test rollbar via console error');
-  }, []);
-
   const handleAddTask = (title) => {
     const newTask = {
       id: uniqueId(), // FIXME: uniqueId doesn't know about existing ids
@@ -41,8 +37,6 @@ const App = () => {
     }));
     setTasks(newTasks);
     saveTasksToLocalStorage(newTasks);
-    // TODO: delete after tests
-    throw new Error('Test rollbar via throw');
   };
 
   const handleDeleteTask = (id) => {
