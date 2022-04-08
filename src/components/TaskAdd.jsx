@@ -1,7 +1,6 @@
 // @ts-check
 import React, { useState } from 'react';
-import { Button, TextField } from '@material-ui/core';
-import SaveIcon from '@material-ui/icons/Save';
+import { Button, TextField } from '@mui/material';
 
 const TaskAdd = ({ onAddTask }) => {
   const [value, setValue] = useState('');
@@ -18,14 +17,8 @@ const TaskAdd = ({ onAddTask }) => {
 
   return (
     <form style={{ display: 'flex' }} onSubmit={handleSubmit}>
-      <TextField
-        style={{ flexGrow: 1 }}
-        variant="outlined"
-        label="What needs to be done?"
-        value={value}
-        onChange={handleChange}
-      />
-      <Button variant="contained" color="primary" type="submit" startIcon={<SaveIcon />} disabled={value.length === 0}>
+      <TextField style={{ flexGrow: 1 }} label="What needs to be done?" value={value} onChange={handleChange} />
+      <Button variant="contained" color="primary" type="submit" disabled={value.length === 0}>
         Add
       </Button>
     </form>

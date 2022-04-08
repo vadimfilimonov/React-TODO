@@ -1,14 +1,16 @@
 // @ts-check
 import React from 'react';
-import { ListItem, ListItemIcon, ListItemText, ListItemSecondaryAction, IconButton } from '@material-ui/core';
-import { CheckBoxOutlineBlankOutlined, CheckBoxOutlined, Delete } from '@material-ui/icons';
+import { Checkbox, ListItem, ListItemIcon, ListItemText, ListItemSecondaryAction, IconButton } from '@mui/material';
+import { Delete } from '@mui/icons-material';
 
 const Task = ({ task, onToggleTask, onDeleteTask }) => (
   <ListItem button onClick={onToggleTask}>
-    <ListItemIcon>{task.done ? <CheckBoxOutlined /> : <CheckBoxOutlineBlankOutlined />}</ListItemIcon>
-    <ListItemText primary={task.title} style={{ textDecoration: task.done ? 'line-through' : 'none' }} />
+    <ListItemIcon>
+      <Checkbox checked={task.done} />
+    </ListItemIcon>
+    <ListItemText primary={task.title} />
     <ListItemSecondaryAction>
-      <IconButton edge="end" aria-label="delete" onClick={onDeleteTask}>
+      <IconButton onClick={onDeleteTask}>
         <Delete />
       </IconButton>
     </ListItemSecondaryAction>
