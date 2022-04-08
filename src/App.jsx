@@ -1,7 +1,7 @@
 // @ts-check
 import React, { useState } from 'react';
 import { Container, Typography, List } from '@material-ui/core';
-import uniqueId from 'lodash.uniqueid';
+import { nanoid } from 'nanoid';
 import Task from './components/Task';
 import TaskAdd from './components/TaskAdd';
 
@@ -21,7 +21,7 @@ const App = () => {
 
   const handleAddTask = (title) => {
     const newTask = {
-      id: uniqueId(), // FIXME: uniqueId doesn't know about existing ids
+      id: nanoid(),
       title,
       done: false,
     };
