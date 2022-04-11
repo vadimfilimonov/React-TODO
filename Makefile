@@ -14,7 +14,7 @@ lint:
 	npx eslint './src/**/*{.js,.jsx}'
 
 test:
-	npx react-scripts test --watchAll=false
+	npx react-scripts test --watchAll=false --passWithNoTests
 
 deploy:
 	npm run deploy

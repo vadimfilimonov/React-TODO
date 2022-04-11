@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, List, Stack } from '@mui/material';
 import { nanoid } from 'nanoid';
 import Task from './components/Task';
-import TaskAdd from './components/TaskAdd';
+import Form from './components/Form';
 
 const extractTasksFromLocalStorage = () => {
   const savedTasks = localStorage.getItem('predefinedTasks');
@@ -49,7 +49,7 @@ const App = () => {
   return (
     <Container maxWidth="sm">
       <Stack mt={15}>
-        <TaskAdd onAddTask={handleAddTask} />
+        <Form onAddTask={handleAddTask} />
         <List>
           {tasks.map((task) => (
             <Task
