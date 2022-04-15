@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import Rollbar from 'rollbar';
 import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
@@ -17,7 +17,10 @@ const rollbar = new Rollbar(rollbarConfig);
 
 const store = configureStore();
 
-render(
+const container = document.getElementById('root');
+const root = createRoot(container);
+
+root.render(
   <React.StrictMode>
     <Provider store={store}>
       <RollbarProvider instance={rollbar}>
@@ -26,6 +29,5 @@ render(
         </ErrorBoundary>
       </RollbarProvider>
     </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
