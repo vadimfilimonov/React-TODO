@@ -1,7 +1,6 @@
 import { TASK_ADD, TASK_TOGGLE, TASK_REMOVE } from '../constants/action-types';
-import { getTasksFromStorage } from '../helpers/storage';
 
-const initialState = getTasksFromStorage();
+const initialState = {};
 
 export default function screen(state = initialState, action) {
   switch (action.type) {

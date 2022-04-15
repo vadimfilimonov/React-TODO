@@ -5,7 +5,7 @@ import Rollbar from 'rollbar';
 import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
 import App from './App';
 import configureStore from './configureStore';
-import { saveTasksToStorage } from './helpers/storage';
+import { getTasksFromStorage, saveTasksToStorage } from './helpers/storage';
 
 const rollbarConfig = {
   accessToken: 'c5866796eedd46819ea8740fb8173e94',
@@ -16,7 +16,8 @@ const rollbarConfig = {
 
 const rollbar = new Rollbar(rollbarConfig);
 
-const store = configureStore();
+const predefinedTasks = getTasksFromStorage();
+const store = configureStore({ tasks: predefinedTasks });
 
 store.subscribe(() => {
   const { tasks } = store.getState();
