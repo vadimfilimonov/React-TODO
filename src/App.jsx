@@ -1,49 +1,28 @@
 // @ts-check
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import { Container, List, Stack } from '@mui/material';
 import { nanoid } from 'nanoid';
 import Task from './components/Task';
 import Form from './components/Form';
+import { addTask, toggleTask, removeTask } from './actions/tasks';
 
-const extractTasksFromLocalStorage = () => {
-  const savedTasks = localStorage.getItem('predefinedTasks');
-  return JSON.parse(savedTasks) || [];
-};
-
-const saveTasksToLocalStorage = (tasks) => {
-  const stringifiedTasks = JSON.stringify(tasks);
-  localStorage.setItem('predefinedTasks', stringifiedTasks);
-};
-
-const App = () => {
-  const predefinedTasks = extractTasksFromLocalStorage();
-  const [tasks, setTasks] = useState(predefinedTasks);
-
-  useEffect(() => {
-    saveTasksToLocalStorage(tasks);
-  }, [tasks]);
-
+const App = ({ tasks, onAddTask, onToggleTask, onRemoveTask }) => {
   const handleAddTask = (title) => {
     const newTask = {
       id: nanoid(),
       title,
       done: false,
     };
-    const newTasks = [newTask, ...tasks];
-    setTasks(newTasks);
+    onAddTask(newTask);
   };
 
   const handleToggleTask = (id) => () => {
-    const newTasks = tasks.map((task) => ({
-      ...task,
-      done: task.id === id ? !task.done : task.done,
-    }));
-    setTasks(newTasks);
+    onToggleTask(id);
   };
 
-  const handleDeleteTask = (id) => () => {
-    const newTasks = tasks.filter((task) => task.id !== id);
-    setTasks(newTasks);
+  const handleRemoveTask = (id) => () => {
+    onRemoveTask(id);
   };
 
   return (
@@ -56,7 +35,7 @@ const App = () => {
               key={task.id}
               task={task}
               onToggleTask={handleToggleTask(task.id)}
-              onDeleteTask={handleDeleteTask(task.id)}
+              onRemoveTask={handleRemoveTask(task.id)}
             />
           ))}
         </List>
@@ -65,4 +44,16 @@ const App = () => {
   );
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    tasks: state.tasks,
+  };
+};
+
+const mapDispatchToProps = {
+  onAddTask: addTask,
+  onToggleTask: toggleTask,
+  onRemoveTask: removeTask,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
