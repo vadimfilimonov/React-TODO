@@ -1,14 +1,5 @@
 import { TASK_ADD, TASK_TOGGLE, TASK_REMOVE } from '../constants/action-types';
-
-const getTasksFromStorage = () => {
-  const savedTasks = localStorage.getItem('predefinedTasks');
-  return JSON.parse(savedTasks) || [];
-};
-
-const saveTasksToStorage = (tasks) => {
-  const stringifiedTasks = JSON.stringify(tasks);
-  localStorage.setItem('predefinedTasks', stringifiedTasks);
-};
+import { getTasksFromStorage } from '../helpers/storage';
 
 const initialState = getTasksFromStorage();
 
@@ -16,8 +7,6 @@ export default function screen(state = initialState, action) {
   switch (action.type) {
     case TASK_ADD: {
       const newState = [...state, action.payload];
-      saveTasksToStorage(newState);
-
       return newState;
     }
 
@@ -32,7 +21,6 @@ export default function screen(state = initialState, action) {
 
         return task;
       });
-      saveTasksToStorage(newState);
 
       return newState;
     }
@@ -45,7 +33,6 @@ export default function screen(state = initialState, action) {
 
         return true;
       });
-      saveTasksToStorage(newState);
 
       return newState;
     }
