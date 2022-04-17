@@ -1,6 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
+import throttle from 'lodash.throttle';
 import Rollbar from 'rollbar';
 import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
 import App from './App';
@@ -19,10 +20,12 @@ const rollbar = new Rollbar(rollbarConfig);
 const predefinedTasks = getTasksFromStorage();
 const store = configureStore({ tasks: predefinedTasks });
 
-store.subscribe(() => {
-  const { tasks } = store.getState();
-  saveTasksToStorage(tasks);
-});
+store.subscribe(
+  throttle(() => {
+    const { tasks } = store.getState();
+    saveTasksToStorage(tasks);
+  }, 1000)
+);
 
 const container = document.getElementById('root');
 const root = createRoot(container);
