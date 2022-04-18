@@ -2,24 +2,6 @@
   "name": "react-todo",
   "version": "0.1.0",
   "homepage": "http://vadimfilimonov.github.io/React-TODO",
-  "dependencies": {
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
-    "@mui/icons-material": "^5.6.0",
-    "@mui/material": "^5.6.0",
-    "@rollbar/react": "^0.11.0",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "lodash.throttle": "^4.1.1",
-    "nanoid": "^3.3.2",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-redux": "^7.2.8",
-    "react-scripts": "5.0.0",
-    "redux": "^4.1.2",
-    "rollbar": "^2.24.1"
-  },
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
@@ -40,18 +22,36 @@
       "last 1 safari version"
     ]
   },
+  "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.6.0",
+    "@mui/material": "^5.6.0",
+    "@rollbar/react": "^0.11.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "lodash.throttle": "^4.1.1",
+    "nanoid": "^3.3.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-redux": "^7.2.8",
+    "react-scripts": "5.0.0",
+    "redux": "^4.1.2",
+    "rollbar": "^2.25.0"
+  },
   "devDependencies": {
     "editorconfig-checker": "^4.0.2",
-    "eslint": "^7.21.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-prettier": "^7.2.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-prettier": "^3.3.1",
-    "eslint-plugin-react": "^7.22.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "gh-pages": "^3.1.0",
-    "prettier": "^2.2.1",
-    "prettier-eslint": "^12.0.0"
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.4.0",
+    "gh-pages": "^3.2.3",
+    "prettier": "^2.6.2",
+    "prettier-eslint": "^13.0.0"
   }
 }
