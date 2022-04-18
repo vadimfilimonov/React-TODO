@@ -2,7 +2,7 @@ import { TASK_ADD, TASK_TOGGLE, TASK_REMOVE } from '../constants/action-types';
 
 const initialState = {};
 
-export default function screen(state = initialState, action) {
+export default function screen(state = initialState, action = {}) {
   switch (action.type) {
     case TASK_ADD: {
       const newState = [...state, action.payload];
