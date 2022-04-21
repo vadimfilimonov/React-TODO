@@ -5,7 +5,8 @@ import throttle from 'lodash.throttle';
 import Rollbar from 'rollbar';
 import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
 import App from './App';
-import configureStore from './configureStore';
+import store from './slices';
+import { hydrate } from './slices/tasksSlice';
 import { getTasksFromStorage, saveTasksToStorage } from './helpers/storage';
 
 const rollbarConfig = {
@@ -18,11 +19,13 @@ const rollbarConfig = {
 const rollbar = new Rollbar(rollbarConfig);
 
 const predefinedTasks = getTasksFromStorage();
-const store = configureStore({ tasks: predefinedTasks });
+if (predefinedTasks) {
+  store.dispatch(hydrate({ tasks: predefinedTasks }));
+}
 
 store.subscribe(
   throttle(() => {
-    const { tasks } = store.getState();
+    const { tasks } = store.getState().tasksStore;
     saveTasksToStorage(tasks);
   }, 1000)
 );
