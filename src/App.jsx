@@ -1,28 +1,30 @@
-// @ts-check
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Container, List, Stack } from '@mui/material';
 import { nanoid } from 'nanoid';
 import Task from './components/Task';
 import Form from './components/Form';
-import { addTask, toggleTask, removeTask } from './actions/tasks';
+import { addTask, toggleTask, removeTask } from './slices/tasksSlice';
 
-const App = ({ tasks, onAddTask, onToggleTask, onRemoveTask }) => {
+const App = () => {
+  const tasks = useSelector((state) => state.tasksStore.tasks);
+  const dispatch = useDispatch();
+
   const handleAddTask = (title) => {
-    const newTask = {
+    const task = {
       id: nanoid(),
       title,
       done: false,
     };
-    onAddTask(newTask);
+    dispatch(addTask({ task }));
   };
 
   const handleToggleTask = (id) => () => {
-    onToggleTask(id);
+    dispatch(toggleTask({ id }));
   };
 
   const handleRemoveTask = (id) => () => {
-    onRemoveTask(id);
+    dispatch(removeTask({ id }));
   };
 
   return (
@@ -44,16 +46,4 @@ const App = ({ tasks, onAddTask, onToggleTask, onRemoveTask }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    tasks: state.tasks,
-  };
-};
-
-const mapDispatchToProps = {
-  onAddTask: addTask,
-  onToggleTask: toggleTask,
-  onRemoveTask: removeTask,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
