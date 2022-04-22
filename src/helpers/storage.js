@@ -1,9 +1,9 @@
-export const getTasksFromStorage = () => {
-  const savedTasks = localStorage.getItem('predefinedTasks');
-  return JSON.parse(savedTasks) || [];
+export const getReduxStateFromStorage = () => {
+  const persistedState = localStorage.getItem('reduxState');
+  return JSON.parse(persistedState) || {};
 };
 
-export const saveTasksToStorage = (tasks) => {
-  const stringifiedTasks = JSON.stringify(tasks);
-  localStorage.setItem('predefinedTasks', stringifiedTasks);
+export const saveReduxStateToStorage = (state) => {
+  const persistedState = JSON.stringify(state);
+  localStorage.setItem('reduxState', persistedState);
 };

@@ -7,7 +7,7 @@ import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
 import App from './App';
 import store from './slices';
 import { hydrate } from './slices/tasksSlice';
-import { getTasksFromStorage, saveTasksToStorage } from './helpers/storage';
+import { getReduxStateFromStorage, saveReduxStateToStorage } from './helpers/storage';
 
 const rollbarConfig = {
   accessToken: 'c5866796eedd46819ea8740fb8173e94',
@@ -18,15 +18,15 @@ const rollbarConfig = {
 
 const rollbar = new Rollbar(rollbarConfig);
 
-const predefinedTasks = getTasksFromStorage();
-if (predefinedTasks) {
-  store.dispatch(hydrate({ tasks: predefinedTasks }));
+const persistedState = getReduxStateFromStorage();
+if (persistedState) {
+  const { tasks } = persistedState.tasksStore;
+  store.dispatch(hydrate({ tasks }));
 }
 
 store.subscribe(
   throttle(() => {
-    const { tasks } = store.getState().tasksStore;
-    saveTasksToStorage(tasks);
+    saveReduxStateToStorage(store.getState());
   }, 1000)
 );
 

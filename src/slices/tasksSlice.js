@@ -12,25 +12,22 @@ const tasksSlice = createSlice({
     hydrate: (_state, action) => {
       return action.payload;
     },
-    addTask: (state, action) => {
-      const { task } = action.payload;
+    addTask: (state, { payload: { task } }) => {
       state.tasks = [task, ...state.tasks];
     },
-    toggleTask: (state, action) => {
-      const { id } = action.payload;
+    toggleTask: (state, { payload: { id } }) => {
       state.tasks = state.tasks.map((task) => {
-        if (task.id === id) {
-          return {
-            ...task,
-            done: !task.done,
-          };
+        if (task.id !== id) {
+          return task;
         }
 
-        return task;
+        return {
+          ...task,
+          done: !task.done,
+        };
       });
     },
-    removeTask: (state, action) => {
-      const { id } = action.payload;
+    removeTask: (state, { payload: { id } }) => {
       state.tasks = state.tasks.filter((task) => task.id !== id);
     },
   },
