@@ -19,9 +19,9 @@ const rollbarConfig = {
 const rollbar = new Rollbar(rollbarConfig);
 
 const persistedState = getReduxStateFromStorage();
-if (persistedState) {
-  const { tasks } = persistedState.tasksStore;
-  store.dispatch(hydrate({ tasks }));
+if (Object.keys(persistedState).length !== 0) {
+  const { entities, ids } = persistedState.tasksStore;
+  store.dispatch(hydrate({ entities, ids }));
 }
 
 store.subscribe(

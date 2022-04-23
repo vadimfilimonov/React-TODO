@@ -2,7 +2,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  tasks: [],
+  entities: {},
+  ids: [],
 };
 
 const tasksSlice = createSlice({
@@ -13,22 +14,15 @@ const tasksSlice = createSlice({
       return action.payload;
     },
     addTask: (state, { payload: { task } }) => {
-      state.tasks = [task, ...state.tasks];
+      state.entities[task.id] = task;
+      state.ids.unshift(task.id);
     },
     toggleTask: (state, { payload: { id } }) => {
-      state.tasks = state.tasks.map((task) => {
-        if (task.id !== id) {
-          return task;
-        }
-
-        return {
-          ...task,
-          done: !task.done,
-        };
-      });
+      state.entities[id].done = !state.entities[id].done;
     },
     removeTask: (state, { payload: { id } }) => {
-      state.tasks = state.tasks.filter((task) => task.id !== id);
+      delete state.entities[id];
+      state.ids = state.ids.filter((taskId) => taskId !== id);
     },
   },
 });

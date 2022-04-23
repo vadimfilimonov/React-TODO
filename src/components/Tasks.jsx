@@ -14,7 +14,11 @@ import { toggleTask, removeTask } from '../slices/tasksSlice';
 
 const Tasks = () => {
   const dispatch = useDispatch();
-  const tasks = useSelector((state) => state.tasksStore.tasks);
+  const tasks = useSelector((state) => {
+    const { ids } = state.tasksStore;
+    const result = ids.map((id) => state.tasksStore.entities[id]);
+    return result;
+  });
 
   const handleToggleTask = (id) => () => {
     dispatch(toggleTask({ id }));
