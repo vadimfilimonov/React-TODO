@@ -20,18 +20,18 @@ const Tasks = () => {
     return result;
   });
 
-  const handleToggleTask = (id) => () => {
-    dispatch(toggleTask({ id }));
+  const handleToggleTask = (id, done) => () => {
+    dispatch(toggleTask({ id, changes: { done: !done } }));
   };
 
   const handleRemoveTask = (id) => () => {
-    dispatch(removeTask({ id }));
+    dispatch(removeTask(id));
   };
 
   return (
     <List>
       {tasks.map(({ id, text, done }) => (
-        <ListItem key={id} button onClick={handleToggleTask(id)}>
+        <ListItem key={id} button onClick={handleToggleTask(id, done)}>
           <ListItemIcon>
             <Checkbox checked={done} />
           </ListItemIcon>

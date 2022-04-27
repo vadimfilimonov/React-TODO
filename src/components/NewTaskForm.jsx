@@ -20,7 +20,7 @@ const NewTaskForm = () => {
       id: nanoid(),
       done: false,
     };
-    dispatch(addTask({ task }));
+    dispatch(addTask(task));
     setText('');
   };
 
