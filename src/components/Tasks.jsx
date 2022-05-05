@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   Checkbox,
   List,
-  ListItem,
+  ListItemButton,
   ListItemIcon,
   ListItemText,
   ListItemSecondaryAction,
@@ -31,7 +31,7 @@ const Tasks = () => {
   return (
     <List>
       {tasks.map(({ id, text, done }) => (
-        <ListItem key={id} button onClick={handleToggleTask(id, done)}>
+        <ListItemButton key={id} onClick={handleToggleTask(id, done)}>
           <ListItemIcon>
             <Checkbox checked={done} />
           </ListItemIcon>
@@ -41,7 +41,7 @@ const Tasks = () => {
               <Delete />
             </IconButton>
           </ListItemSecondaryAction>
-        </ListItem>
+        </ListItemButton>
       ))}
     </List>
   );

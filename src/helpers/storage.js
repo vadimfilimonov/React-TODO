@@ -3,7 +3,7 @@ export const getReduxStateFromStorage = () => {
   return JSON.parse(persistedState) || {};
 };
 
-export const saveReduxStateToStorage = (state) => {
+export const setReduxStateToStorage = (state) => {
   const persistedState = JSON.stringify(state);
   localStorage.setItem('reduxState', persistedState);
 };
