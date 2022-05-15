@@ -1,8 +1,7 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 
-const tasksEntityAdapter = createEntityAdapter();
-
-const initialState = tasksEntityAdapter.getInitialState();
+const tasksAdapter = createEntityAdapter();
+const initialState = tasksAdapter.getInitialState();
 
 const tasksSlice = createSlice({
   name: 'tasks',
@@ -11,12 +10,12 @@ const tasksSlice = createSlice({
     hydrate: (_state, action) => {
       return action.payload;
     },
-    addTask: tasksEntityAdapter.addOne,
-    toggleTask: tasksEntityAdapter.updateOne,
-    removeTask: tasksEntityAdapter.removeOne,
+    addTask: tasksAdapter.addOne,
+    toggleTask: tasksAdapter.updateOne,
+    removeTask: tasksAdapter.removeOne,
   },
 });
 
 export const { addTask, toggleTask, removeTask, hydrate } = tasksSlice.actions;
-
+export const selectors = tasksAdapter.getSelectors((state) => state.tasks);
 export default tasksSlice.reducer;

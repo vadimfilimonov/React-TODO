@@ -21,7 +21,7 @@ const rollbar = new Rollbar(rollbarConfig);
 
 const persistedState = getReduxStateFromStorage();
 if (!isEmpty(persistedState)) {
-  const { entities, ids } = persistedState.tasksStore;
+  const { entities, ids } = persistedState.tasks;
   store.dispatch(hydrate({ entities, ids }));
 }
 
@@ -36,12 +36,12 @@ const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <RollbarProvider instance={rollbar}>
+    <RollbarProvider instance={rollbar}>
+      <Provider store={store}>
         <ErrorBoundary>
           <App />
         </ErrorBoundary>
-      </RollbarProvider>
-    </Provider>
+      </Provider>
+    </RollbarProvider>
   </React.StrictMode>
 );

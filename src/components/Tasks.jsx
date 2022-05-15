@@ -10,15 +10,11 @@ import {
   IconButton,
 } from '@mui/material';
 import { Delete } from '@mui/icons-material';
-import { toggleTask, removeTask } from '../slices/tasksSlice';
+import { toggleTask, removeTask, selectors } from '../slices/tasksSlice';
 
 const Tasks = () => {
   const dispatch = useDispatch();
-  const tasks = useSelector((state) => {
-    const { ids } = state.tasksStore;
-    const result = ids.map((id) => state.tasksStore.entities[id]);
-    return result;
-  });
+  const tasks = useSelector(selectors.selectAll);
 
   const handleToggleTask = (id, done) => () => {
     dispatch(toggleTask({ id, changes: { done: !done } }));
