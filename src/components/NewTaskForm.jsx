@@ -1,6 +1,7 @@
 // @ts-check
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { nanoid } from 'nanoid';
 import { Button, TextField } from '@mui/material';
 import { addTask } from '../slices/tasksSlice';
@@ -8,6 +9,7 @@ import { addTask } from '../slices/tasksSlice';
 const NewTaskForm = () => {
   const [text, setText] = useState('');
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const handleUpdateNewTaskText = (event) => {
     setText(event.target.value);
@@ -29,12 +31,12 @@ const NewTaskForm = () => {
       <TextField
         required
         style={{ flexGrow: 1 }}
-        label="What needs to be done?"
+        label={t('newTaskForm.inputPlaceholder')}
         value={text}
         onChange={handleUpdateNewTaskText}
       />
       <Button variant="contained" color="primary" type="submit">
-        Add
+        {t('newTaskForm.button')}
       </Button>
     </form>
   );

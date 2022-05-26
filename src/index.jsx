@@ -5,10 +5,19 @@ import Rollbar from 'rollbar';
 import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
 import throttle from 'lodash/throttle';
 import isEmpty from 'lodash/isEmpty';
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
 import App from './App';
 import store from './slices';
 import { hydrate } from './slices/tasksSlice';
 import { getReduxStateFromStorage, setReduxStateToStorage } from './helpers/storage';
+import resources from './assets/locales';
+
+i18n.use(initReactI18next).init({
+  resources,
+  lng: 'en',
+  fallbackLng: 'en',
+});
 
 const rollbarConfig = {
   accessToken: 'c5866796eedd46819ea8740fb8173e94',
