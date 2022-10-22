@@ -20,7 +20,7 @@ i18n.use(initReactI18next).init({
 });
 
 const rollbarConfig = {
-  accessToken: 'c5866796eedd46819ea8740fb8173e94',
+  accessToken: process.env.REACT_APP_ROLLBAR_ACCESS_TOKEN,
   environment: process.env.NODE_ENV,
   captureUncaught: true,
   captureUnhandledRejections: true,
