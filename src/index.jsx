@@ -37,7 +37,7 @@ if (!isEmpty(persistedState)) {
 store.subscribe(
   throttle(() => {
     setReduxStateToStorage(store.getState());
-  }, 1000)
+  }, 1000),
 );
 
 const container = document.getElementById('root');
@@ -52,5 +52,5 @@ root.render(
         </ErrorBoundary>
       </Provider>
     </RollbarProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
