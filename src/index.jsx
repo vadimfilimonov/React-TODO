@@ -1,8 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import Rollbar from 'rollbar';
-import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
 import throttle from 'lodash/throttle';
 import isEmpty from 'lodash/isEmpty';
 import i18n from 'i18next';
@@ -18,15 +16,6 @@ i18n.use(initReactI18next).init({
   lng: 'en',
   fallbackLng: 'en',
 });
-
-const rollbarConfig = {
-  accessToken: process.env.REACT_APP_ROLLBAR_ACCESS_TOKEN,
-  environment: process.env.NODE_ENV,
-  captureUncaught: true,
-  captureUnhandledRejections: true,
-};
-
-const rollbar = new Rollbar(rollbarConfig);
 
 const persistedState = getReduxStateFromStorage();
 if (!isEmpty(persistedState)) {
@@ -45,12 +34,8 @@ const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <RollbarProvider instance={rollbar}>
-      <Provider store={store}>
-        <ErrorBoundary>
-          <App />
-        </ErrorBoundary>
-      </Provider>
-    </RollbarProvider>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
 );
