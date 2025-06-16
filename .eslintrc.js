@@ -4,7 +4,6 @@ module.exports = {
     es6: true,
     jest: true,
   },
-  extends: ['plugin:react/recommended', 'plugin:react-hooks/recommended', 'airbnb', 'plugin:prettier/recommended'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -12,5 +11,5 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', 'react-hooks', 'import', 'prettier'],
+  plugins: [],
 };
