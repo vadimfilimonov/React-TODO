@@ -6,7 +6,7 @@ import { nanoid } from 'nanoid';
 import { Button, TextField } from '@mui/material';
 import { addTask } from '../slices/tasksSlice';
 
-const NewTaskForm = () => {
+function NewTaskForm() {
   const [text, setText] = useState('');
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -40,6 +40,6 @@ const NewTaskForm = () => {
       </Button>
     </form>
   );
-};
+}
 
 export default NewTaskForm;

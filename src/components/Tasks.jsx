@@ -12,7 +12,7 @@ import {
 import { Delete } from '@mui/icons-material';
 import { toggleTask, removeTask, selectors } from '../slices/tasksSlice';
 
-const Tasks = () => {
+function Tasks() {
   const dispatch = useDispatch();
   const tasks = useSelector(selectors.selectAll);
 
@@ -41,6 +41,6 @@ const Tasks = () => {
       ))}
     </List>
   );
-};
+}
 
 export default Tasks;
