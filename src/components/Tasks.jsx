@@ -1,15 +1,13 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  Checkbox,
-  List,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  ListItemSecondaryAction,
-  IconButton,
-} from '@mui/material';
-import { Delete } from '@mui/icons-material';
+import Checkbox from '@mui/material/Checkbox';
+import List from '@mui/material/List';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import ListItem from '@mui/material/ListItem';
+import IconButton from '@mui/material/IconButton';
+import Delete from '@mui/icons-material/Delete';
 import { toggleTask, removeTask, selectors } from '../slices/tasksSlice';
 
 function Tasks() {
@@ -32,11 +30,10 @@ function Tasks() {
             <Checkbox checked={done} />
           </ListItemIcon>
           <ListItemText primary={text} />
-          <ListItemSecondaryAction>
+          <ListItem secondaryAction={
             <IconButton onClick={handleRemoveTask(id)}>
               <Delete />
-            </IconButton>
-          </ListItemSecondaryAction>
+            </IconButton>} />
         </ListItemButton>
       ))}
     </List>

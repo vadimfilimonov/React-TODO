@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { nanoid } from 'nanoid';
-import { Button, TextField } from '@mui/material';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import { addTask } from '../slices/tasksSlice';
 
 function NewTaskForm() {
