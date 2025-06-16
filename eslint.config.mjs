@@ -1,6 +1,7 @@
 import js from "@eslint/js";
 import globals from "globals";
 import pluginReact from "eslint-plugin-react";
+import pluginPrettier from "eslint-plugin-prettier";
 import { defineConfig } from "eslint/config";
 import babelParser from "@babel/eslint-parser";
 
@@ -40,6 +41,15 @@ export default defineConfig([
     },
     rules: {
       ...pluginReact.configs.recommended.rules,
+    },
+  },
+  {
+    files: ["**/*.{js,mjs,cjs,jsx}"],
+    plugins: {
+      prettier: pluginPrettier,
+    },
+    rules: {
+      "prettier/prettier": "error",
     },
   },
 ]);
