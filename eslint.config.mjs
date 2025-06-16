@@ -1,6 +1,7 @@
 import js from "@eslint/js";
 import globals from "globals";
 import pluginReact from "eslint-plugin-react";
+import pluginImport from "eslint-plugin-import";
 import pluginPrettier from "eslint-plugin-prettier";
 import { defineConfig } from "eslint/config";
 import babelParser from "@babel/eslint-parser";
@@ -49,6 +50,38 @@ export default defineConfig([
     },
     rules: {
       ...pluginReact.configs.recommended.rules,
+    },
+  },
+  {
+    // Import plugin for managing import order and grouping
+    files: ["**/*.{js,jsx}"],
+    plugins: { import: pluginImport },
+    rules: {
+      // Enforce a convention in import order
+      "import/order": [
+        "error",
+        {
+          groups: [
+            "builtin",   // Node.js built-ins: fs, path, etc.
+            "external",  // Packages from node_modules
+            "internal",  // Internal modules (your aliases, paths)
+            "parent",    // Imports from parent directories
+            "sibling",   // Imports from sibling directories
+            "index",     // index files
+            "object",    // Imports of objects (rare)
+            "type",      // Type imports (TypeScript)
+          ],
+          pathGroups: [
+            {
+              pattern: "react",
+              group: "external",
+              position: "before",
+            },
+          ],
+          pathGroupsExcludedImportTypes: ["react"],
+          "newlines-between": "never",
+        },
+      ],
     },
   },
   {
