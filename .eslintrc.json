@@ -7,7 +7,7 @@
     "extends": [
         "plugin:react/recommended",
         "plugin:react-hooks/recommended",
-        "standard",
+        "airbnb",
         "plugin:prettier/recommended"
     ],
     "parserOptions": {
