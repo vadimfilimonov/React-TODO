@@ -7,30 +7,38 @@ import babelParser from "@babel/eslint-parser";
 
 export default defineConfig([
   {
-    files: ["**/*.{js,mjs,cjs,jsx}"],
+    // Configure parser and language options for all JS/JSX files
+    // Using Babel parser to support JSX and modern JavaScript syntax.
+    // Also sets browser global variables like window, document, etc.
+    files: ["**/*.{js,jsx}"],
     languageOptions: {
       parser: babelParser,
       parserOptions: {
-        ecmaVersion: "latest",
-        sourceType: "module",
+        ecmaVersion: "latest",           // Enable latest ECMAScript features
+        sourceType: "module",            // Use ES modules (import/export)
         ecmaFeatures: {
-          jsx: true,
+          jsx: true,                     // Enable JSX syntax support
         },
-        requireConfigFile: false,
+        requireConfigFile: false,        // Don't require a separate babel config file
         babelOptions: {
-          presets: ["@babel/preset-react"],
+          presets: ["@babel/preset-react"], // Use React preset for JSX parsing
         },
       },
-      globals: globals.browser,
+      globals: globals.browser,          // Define browser global variables
     },
   },
   {
-    files: ["**/*.{js,mjs,cjs,jsx}"],
+    // Enable recommended base JavaScript rules from ESLint
+    // Provides standard best practices and error prevention for JS code
+    files: ["**/*.{js,jsx}"],
     plugins: { js },
     extends: ["js/recommended"],
   },
   {
-    files: ["**/*.{js,mjs,cjs,jsx}"],
+    // Enable React plugin with recommended rules
+    // Adds React-specific linting, including JSX and React API usage
+    // Automatically detects React version for compatibility with rules
+    files: ["**/*.{js,jsx}"],
     plugins: {
       react: pluginReact,
     },
@@ -44,7 +52,9 @@ export default defineConfig([
     },
   },
   {
-    files: ["**/*.{js,mjs,cjs,jsx}"],
+    // Integrate Prettier formatting rules into ESLint
+    // Reports formatting issues as ESLint errors to maintain consistent code style
+    files: ["**/*.{js,jsx}"],
     plugins: {
       prettier: pluginPrettier,
     },
