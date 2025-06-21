@@ -8,13 +8,16 @@ import { initReactI18next } from 'react-i18next';
 import App from './App';
 import store from './slices';
 import { hydrate } from './slices/tasksSlice';
-import { getReduxStateFromStorage, setReduxStateToStorage } from './helpers/storage';
+import { getReduxStateFromStorage, setReduxStateToStorage, getCurrentLanguageFromStorage } from './helpers/storage';
 import resources from './assets/locales';
+import { DEFAULT_LANGUAGE } from './consts';
+
+const startLanguage = getCurrentLanguageFromStorage() || DEFAULT_LANGUAGE;
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: 'en',
-  fallbackLng: 'en',
+  lng: startLanguage,
+  fallbackLng: startLanguage,
 });
 
 const persistedState = getReduxStateFromStorage();
