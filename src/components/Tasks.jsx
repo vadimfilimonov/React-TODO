@@ -30,10 +30,13 @@ function Tasks() {
             <Checkbox checked={done} />
           </ListItemIcon>
           <ListItemText primary={text} />
-          <ListItem secondaryAction={
-            <IconButton onClick={handleRemoveTask(id)}>
-              <Delete />
-            </IconButton>} />
+          <ListItem
+            secondaryAction={
+              <IconButton onClick={handleRemoveTask(id)}>
+                <Delete />
+              </IconButton>
+            }
+          />
         </ListItemButton>
       ))}
     </List>

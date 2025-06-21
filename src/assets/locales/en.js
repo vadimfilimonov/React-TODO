@@ -4,5 +4,6 @@ export default {
       inputPlaceholder: 'What needs to be done?',
       button: 'Add',
     },
+    currentLanguage: 'en',
   },
 };
